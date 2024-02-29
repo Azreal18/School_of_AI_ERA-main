@@ -2,7 +2,7 @@
 
 ### **Sample model architecture**
 
-![lrone](./images/sample.png)
+![lrone](./images/sample_img.png)
 
 
 <p>
