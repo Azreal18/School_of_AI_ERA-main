@@ -4,7 +4,7 @@ This repository contains the code for the S6 Assignment, which is a convolutiona
 
 **Architechture Details**
 - Model Architecture 
-    ----------------------------------------------------------------
+----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
             Conv2d-1           [-1, 16, 28, 28]             160
