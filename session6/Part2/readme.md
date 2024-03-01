@@ -3,10 +3,11 @@
 This repository contains the code for the S6 Assignment, which is a convolutional neural network (CNN) model trained on the MNIST dataset.
 
 **Architechture Details**
+<hr/>
+
 - Model Architecture 
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
+
+        Layer (type)               Output Shape         Param 
             Conv2d-1           [-1, 16, 28, 28]             160
               ReLU-2           [-1, 16, 28, 28]               0
            Dropout-3           [-1, 16, 28, 28]               0
@@ -27,16 +28,8 @@ This repository contains the code for the S6 Assignment, which is a convolutiona
       BatchNorm2d-18             [-1, 10, 7, 7]              20
         MaxPool2d-19             [-1, 10, 3, 3]               0
         AvgPool2d-20             [-1, 10, 1, 1]               0
-================================================================
-Total params: 17,118
-Trainable params: 17,118
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.00
-Forward/backward pass size (MB): 0.67
-Params size (MB): 0.07
-Estimated Total Size (MB): 0.74
-----------------------------------------------------------------
+**Total params: 17,118**
+**Trainable params: 17,118**
 
 ### **Dataset details**
 
