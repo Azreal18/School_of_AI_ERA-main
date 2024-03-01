@@ -2,7 +2,7 @@
 
 ### **Sample model architecture**
 
-![lrone](./images/sample.png)
+![lrone](./images/sample_img.png)
 
 
 <p>
@@ -84,7 +84,7 @@ The steps from 1 to 6 are repeated until the specified number of epochs is reach
 
 ### **Initial weights as per excel**
 
-![lrone1](./images/Initial_weights.jpg)
+![lrone1](./images/Initial_weights.png)
 
 
 
