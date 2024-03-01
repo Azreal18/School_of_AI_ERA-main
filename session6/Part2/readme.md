@@ -49,6 +49,11 @@ This repository contains the code for the S6 Assignment, which is a convolutiona
 - Learning rate - 0.01 with LR scheduler
 - Batch size - 128 (depends on device where this model gets executed)
 - Last 5 epochs :
+
+        Adjusting learning rate of group 0 to 1.0000e-03.
+        loss=0.010534082539379597 batch_id=468: 100%|██████████| 469/469 [00:16<00:00, 28.43it/s]
+        Test set: Average loss: 0.0239, Accuracy: 9931/10000 (99%)
+
         Adjusting learning rate of group 0 to 1.0000e-03.
         loss=0.0043894764967262745 batch_id=468: 100%|██████████| 469/469 [00:16<00:00, 28.63it/s]
         Test set: Average loss: 0.0229, Accuracy: 9933/10000 (99%)
