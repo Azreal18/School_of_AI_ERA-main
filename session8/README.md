@@ -4,7 +4,7 @@
 
 This project aims to explore different normalization techniques in a Convolutional Neural Network (CNN) using the CIFAR10 dataset. The objectives are:
 
-1. Implement a CNN with the following architecture: C1 C2 c3 P1 C3 C4 C5 c6 P2 C7 C8 C9 GAP c10 (where cN is a 1x1 layer).
+1. Implement a CNN with the following architecture: C1 C2 c3 P1 C3 C4 C5 c6 P2 C7 C8 C9 GAP C10 (where cN is a 1x1 layer).
 2. Keep the total parameter count under 50,000.
 3. Limit the training to a maximum of 20 epochs.
 4. Implement three versions of the network, each using a different normalization technique:
