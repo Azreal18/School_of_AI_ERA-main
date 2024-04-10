@@ -1,45 +1,38 @@
-# Objectives
+# Session 8 - Normalization Techniques
 
-1. Change the dataset to CIFAR10
-2. Make this network:
-   - C1 C2 c3 P1 C3 C4 C5 c6 P2 C7 C8 C9 GAP c10
-     - cN is 1x1 layer
-   - Keep the parameter count less than 50,000
-   - Max Epochs is 20
-3. You are making 3 versions of the above code (in each case achieve above 70% accuracy):
-   - Network with Group Normalization
-   - Network with Layer Normalization
-   - Network with Batch Normalization
-4. Share these details
-   - Training accuracy for 3 models
-   - Test accuracy for 3 models
-5. Find 10 misclassified images for the BN model, and show them as a 5x2 image matrix in 3 separately annotated images.
-6. Write an explanatory README file that explains:
-   - what is your code all about,
-   - your findings for normalization techniques,
-   - add all your graphs
-   - your collection-of-misclassified-images
-7. Upload your complete assignment on GitHub and share the link on LMS
+## Objectives
 
-<br>
+This project aims to explore different normalization techniques in a Convolutional Neural Network (CNN) using the CIFAR10 dataset. The objectives are:
 
-# Code Overview
+1. Implement a CNN with the following architecture: C1 C2 c3 P1 C3 C4 C5 c6 P2 C7 C8 C9 GAP c10 (where cN is a 1x1 layer).
+2. Keep the total parameter count under 50,000.
+3. Limit the training to a maximum of 20 epochs.
+4. Implement three versions of the network, each using a different normalization technique:
+   - Group Normalization
+   - Layer Normalization
+   - Batch Normalization
+5. Achieve a minimum accuracy of 70% for each model.
+6. Identify 10 misclassified images for the Batch Normalization model and display them in a 5x2 image matrix.
+7. Document the findings and observations in this README file.
 
-The code is structured as follows:
+## Code Structure
 
-1. `Model Code`: file which contains the model used (`S08Model`). It expects the following arguments:
-   - `norm_method: NormalizationMethod = NormalizationMethod.BATCH`: The choice of normalization to use.
-   - `add_skip: bool = False`: Whether to add skip connections or not.
-2. `Training`: Trainer class which has methods to train the model.
-3. `Testing`: Tester class which has methods to test the model.
-4. `Data Loading`: It contains the `Cifar10DataLoader` class which is used to get train and test loaders.
-5. `Utils`: Utility functions used to plot graphs, visualize images etc.
+The code is organized as follows:
+
+1. `Model Code`: This file contains the `S08Model` class, which represents the CNN model. It accepts two arguments:
+   - `norm_method: NormalizationMethod = NormalizationMethod.BATCH`: The normalization technique to use.
+   - `add_skip: bool = False`: Whether to include skip connections in the model.
+2. `Training`: This class contains methods for training the model.
+3. `Testing`: This class contains methods for testing the model.
+4. `Data Loading`: This file includes the `Cifar10DataLoader` class, which provides train and test data loaders.
+5. `Utils`: This file contains utility functions for tasks such as plotting graphs and visualizing images.
 
 # Transforms
 
 - Train transforms
   - Random Horizontal Flip
   - Image normalization
+
 - Test transforms
   - Image normalization
 
@@ -293,17 +286,19 @@ Estimated Total Size (MB): 2.80
 
 ## Batch Normalization (BN)
 
-To perform BN, we calculate the mean and the variance of each channel. It does not depend on the mini-batch size. No matter how many images are in the batch, there is only 1 mean and 1 variance for each channel. The number of additional parameters depends on the number of channels.
+Batch Normalization (BN) calculates the mean and variance of each channel, regardless of the mini-batch size. It normalizes the data across the entire mini-batch per channel. This technique introduces additional parameters based on the number of channels.
 
 ## Group Normalization (GN)
 
-To perform GN, we calculate the mean and the variance of each group. The grouping is of the channels. Mean and variance are calculated for each image in the mini-batch. The number of additional parameters depends on the size of the mini-batch and the number of groups.
+Group Normalization (GN) calculates the mean and variance of each group, where the grouping is based on the channels. It calculates the mean and variance for each image in the mini-batch. The number of additional parameters depends on the mini-batch size and the number of groups.
 
-If the size of batch is 4 and number of groups is 2 then the number of additional parameters added is 8 each for mean and variance.
+For example, if the mini-batch size is 4 and the number of groups is 2, GN adds 8 additional parameters for both mean and variance.
 
 ## Layer Normalization (LN)
 
-To perform LN, we calculate the mean and the variance of each image in the mini-batch across all the channels. No matter how many channels are there, there is only 1 mean and 1 variance for each image. The number of additional parameters depends on the size of the mini-batch.
+Layer Normalization (LN) calculates the mean and variance of each image in the mini-batch across all channels. It normalizes the data per image, regardless of the number of channels. The number of additional parameters depends on the mini-batch size.
+
+These normalization techniques have different characteristics and can be used based on the specific requirements of the model and the data.
 
 <br>
 
@@ -344,19 +339,22 @@ To perform LN, we calculate the mean and the variance of each image in the mini-
 
 # Analysis
 
-## Batch normalization
+## Batch Normalization
 
-- Highest training and testing accuracy as it normalizes across the whole mini-batch per channel.
+- Batch Normalization calculates the mean and variance of each channel, regardless of the mini-batch size. It normalizes the data across the entire mini-batch per channel.
+- Batch Normalization achieved the highest training and testing accuracy among the three normalization techniques.
 
-## Group normalization
+## Group Normalization
 
-- It performed worse than Batch Normalization and better than Layer Normalization.
-- As the number of groups increases, it provides better results.
+- Group Normalization calculates the mean and variance of each group, where the grouping is based on the channels. It calculates the mean and variance for each image in the mini-batch.
+- Group Normalization performed worse than Batch Normalization but better than Layer Normalization.
+- As the number of groups increases, Group Normalization provides better results.
 
-## Layer normalization
+## Layer Normalization
 
-- It performed the worst as it normalizes each image across all channels.
-- This is not suitable for image classifiers.
+- Layer Normalization calculates the mean and variance of each image in the mini-batch across all channels. It normalizes the data per image, regardless of the number of channels.
+- Layer Normalization performed the worst among the three normalization techniques.
+- Layer Normalization is not suitable for image classifiers.
 
 <br>
 
@@ -395,4 +393,4 @@ To perform LN, we calculate the mean and the variance of each image in the mini-
 1. Batch normalization: `session_08_bn.ipynb`
 2. Group normalization: `session_08_gn.ipynb`
 3. Layer normalization: `session_08_ln.ipynb`
-   <br>
+<br>
