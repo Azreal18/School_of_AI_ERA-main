@@ -9,6 +9,8 @@ from utils import get_stats, merge
 from base import Tokenizer
 import regex as re
 
+
+
 class BasicTokenizer(Tokenizer):
 
     def __init__(self):
@@ -82,6 +84,7 @@ Unlike BasicTokenizer:
 - RegexTokenizer handles an optional regex splitting pattern.
 - RegexTokenizer handles optional special tokens.
 """
+
 
 
 # Regex split
