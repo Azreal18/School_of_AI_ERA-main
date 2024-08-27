@@ -1,0 +1,4 @@
+torch
+pillow
+scikit-image
+open_clip_torch
